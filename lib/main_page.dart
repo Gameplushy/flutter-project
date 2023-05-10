@@ -15,7 +15,6 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
 
   SharedPreferences? sharedPreference;
-  SwipeCards? tinderWidget;
   bool lookingForImages = true;
 
   Future<String?> getDog() async{
@@ -59,6 +58,7 @@ class _MainPageState extends State<MainPage> {
     cardList = <SwipeItem>[];
     for(int i=0;i<10;i++){
       String? dogPic = await getDog();
+      print(dogPic);
       //Check if any error happened
       if(dogPic==null) continue;
       try{
