@@ -11,13 +11,13 @@ class FaveList extends StatefulWidget{
 
 class _FaveState extends State<FaveList>{
 
- SharedPreferences? sp;
+ SharedPreferences? sharedPreference;
 
   Future<void> getSP() async{
-    SharedPreferences tmp;
-    tmp = await SharedPreferences.getInstance();
+    SharedPreferences tempVarForSharedPreference;
+    tempVarForSharedPreference = await SharedPreferences.getInstance();
     setState(() {
-       sp = tmp;
+       sharedPreference = tempVarForSharedPreference;
     });
   }
 
@@ -28,13 +28,13 @@ class _FaveState extends State<FaveList>{
   }
 
   Widget getList(){
-    if(sp == null) return const Center(child: CircularProgressIndicator());
-    var tmp = sp!.getStringList("favorites");
-    tmp ??= [];
+    if(sharedPreference == null) return const Center(child: CircularProgressIndicator());
+    var favoriteList = sharedPreference!.getStringList("favorites");
+    favoriteList ??= [];
     return SingleChildScrollView(child:
       GalleryImage(
-        imageUrls: tmp,
-        numOfShowImages: tmp.length,
+        imageUrls: favoriteList,
+        numOfShowImages: favoriteList.length,
       )
     );
   }
@@ -51,7 +51,7 @@ class _FaveState extends State<FaveList>{
               child: ElevatedButton(
                 onPressed: () {
                   setState(() {
-                  sp!.remove("favorites");  
+                  sharedPreference!.remove("favorites");  
                   Navigator.pop(context);          
                   });    
                 },

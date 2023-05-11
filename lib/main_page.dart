@@ -92,7 +92,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("What The Dog Doing?"),
+        title: const Text("Do You Like This Dog ?"),
       ),
       body:
       Center(child: 
